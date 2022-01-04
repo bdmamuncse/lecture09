@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lecture_09_1_fresh_start/class/my_user_data.dart';
+import 'package:lecture_09_1_fresh_start/screens/user_details.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -47,18 +48,29 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: userName.length,
             itemBuilder: (context, index) {
               return InkWell(
-                onTap: () {
-                  setState(() {
-                    userName.removeAt(index);
-                  });
-                  // print('${userName[index]}Positional Clicked');
+
+                onTap: (){
+                  Navigator.of(context).pushNamed(UserDetails.routeName, arguments: {
+                                      });
                 },
+
                 child: Container(
-                  margin: EdgeInsets.only(bottom: 2),
-                  height: 40,
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.only(bottom: 2),
+                  padding: const EdgeInsets.only(left:10),
+                  height: 80,
                   width: double.infinity,
                   color: Colors.grey,
-                  child: Center(child: Text(userName[index].username )),
+                  // child: Center(child: Text(userName[index].username )),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(userName[index].username),
+                      Text(userName[index].useremail),
+                      Text(userName[index].userphone),
+                    ],
+                  ),
                 ),
               );
             } ,
